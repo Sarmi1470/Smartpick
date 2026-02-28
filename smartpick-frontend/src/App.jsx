@@ -9,6 +9,7 @@ import About from './components/sections/About'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import { BookProvider } from './context/BookContext'
+import { QuizProvider } from './context/QuizContext'
 
 function App() {
   const [scannedBooks, setScannedBooks] = useState([])
@@ -36,47 +37,49 @@ function App() {
 
   return (
     <BookProvider>
-      <div className="relative">
-        {/* Floating background elements for Dark Academia aesthetic */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-muted-gold/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-soft-lavender/5 rounded-full blur-3xl"></div>
+      <QuizProvider>
+        <div className="relative">
+          {/* Floating background elements for Dark Academia aesthetic */}
+          <div className="fixed inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-muted-gold/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-soft-lavender/5 rounded-full blur-3xl"></div>
+          </div>
+
+          <Navigation currentSection={currentSection} />
+          
+          <main>
+            <section id="hero" className="section-container">
+              <Hero scannedBooks={scannedBooks} setScannedBooks={setScannedBooks} />
+            </section>
+
+            <section id="single" className="section-container">
+              <SingleBook />
+            </section>
+
+            <section id="compare" className="section-container">
+              <CompareBooks scannedBooks={scannedBooks} setScannedBooks={setScannedBooks} />
+            </section>
+
+            <section id="surprise" className="section-container">
+              <SurpriseMe />
+            </section>
+
+            <section id="why-confused" className="section-container">
+              <WhyConfused />
+            </section>
+
+            <section id="personality" className="section-container">
+              <ReadingPersonality />
+            </section>
+
+            <section id="about" className="section-container">
+              <About />
+            </section>
+          </main>
+
+          <Footer />
         </div>
-
-        <Navigation currentSection={currentSection} />
-        
-        <main>
-          <section id="hero" className="section-container">
-            <Hero scannedBooks={scannedBooks} setScannedBooks={setScannedBooks} />
-          </section>
-
-          <section id="single" className="section-container">
-            <SingleBook />
-          </section>
-
-          <section id="compare" className="section-container">
-            <CompareBooks scannedBooks={scannedBooks} setScannedBooks={setScannedBooks} />
-          </section>
-
-          <section id="surprise" className="section-container">
-            <SurpriseMe />
-          </section>
-
-          <section id="why-confused" className="section-container">
-            <WhyConfused />
-          </section>
-
-          <section id="personality" className="section-container">
-            <ReadingPersonality />
-          </section>
-
-          <section id="about" className="section-container">
-            <About />
-          </section>
-        </main>
-
-        <Footer />
-      </div>
+      </QuizProvider>
     </BookProvider>
   )
 }
