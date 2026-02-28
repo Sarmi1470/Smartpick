@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-deep-charcoal text-text-primary font-inter antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-md bg-white/5 border border-white/10 
+           rounded-2xl shadow-xl hover:border-muted-gold/30 
+           transition-all duration-300;
+  }
+  
+  .accent-gradient-text {
+    @apply bg-gradient-to-r from-muted-gold to-soft-lavender 
+           bg-clip-text text-transparent;
+  }
+  
+  .nav-link {
+    @apply relative text-text-secondary hover:text-muted-gold 
+           transition-colors duration-300 after:content-[''] 
+           after:absolute after:bottom-0 after:left-0 after:w-0 
+           after:h-0.5 after:bg-muted-gold after:transition-all 
+           after:duration-300 hover:after:w-full;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 bg-muted-gold/10 border border-muted-gold/30 
+           rounded-xl text-muted-gold hover:bg-muted-gold/20 
+           transition-all duration-300 font-medium;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-soft-lavender/10 border border-soft-lavender/30 
+           rounded-xl text-soft-lavender hover:bg-soft-lavender/20 
+           transition-all duration-300 font-medium;
+  }
+  
+  .section-container {
+    @apply min-h-screen flex items-center justify-center px-4 py-16;
+  }
+  
+  .content-card {
+    @apply max-w-4xl w-full glass-card p-8 md:p-12;
+  }
+}
